@@ -1,0 +1,30 @@
+generated: '2026-07-17'
+method: searched
+source: Maven Central (search.maven.org), CocoaPods trunk API, github.com/AdColony
+notes: >-
+  AdColony was acquired by Digital Turbine; adcolony.com and the developer
+  support/docs hosts now redirect to digitalturbine.com. The first-party mobile
+  ads SDKs remain published on Maven Central and CocoaPods, and the iOS SDK
+  source remains on GitHub (archived). No npm, PyPI, NuGet, RubyGems, Packagist,
+  or crates.io first-party packages were found.
+packages:
+- name: com.adcolony:sdk
+  registry: maven
+  official: true
+  language: java
+  platform: android
+  latest_version: 4.8.0
+  version_count: 11
+  packaging: aar
+  url: https://central.sonatype.com/artifact/com.adcolony/sdk
+  registry_url: https://repo1.maven.org/maven2/com/adcolony/sdk/
+  description: AdColony Mobile Ads SDK for Android (mobile advertising / monetization).
+- name: AdColony
+  registry: cocoapods
+  official: true
+  language: objective-c
+  platform: ios
+  latest_version: 4.9.0
+  url: https://cocoapods.org/pods/AdColony
+  source_code: https://github.com/AdColony/AdColony-iOS-SDK
+  description: AdColony Mobile Ads SDK for iOS (mobile advertising / monetization). Source repo archived on GitHub.

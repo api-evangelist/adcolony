@@ -1,0 +1,28 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://www.digitalturbine.com/blog/dt-exchange-x-adcolony-merge-is-now-complete,
+  https://developers.google.com/admob/android/mediation/adcolony
+status: deprecated
+summary: >-
+  AdColony was a mobile advertising and monetization platform acquired by Digital
+  Turbine (2021) and subsequently merged into the DT Exchange. The AdColony brand,
+  developer portal, and monetization SDKs have been deprecated. www.adcolony.com
+  now redirects to digitalturbine.com; developers are directed to Digital Turbine's
+  DT FairBid / DT Exchange products.
+deprecation:
+  deprecated: true
+  reason: acquired-and-merged
+  successor: Digital Turbine (DT Exchange / DT FairBid)
+  successor_url: https://www.digitalturbine.com/
+  sunset_notes:
+  - AdColony publisher account access retained for accounting purposes only until 2024-03-31.
+  - AdColony mediation adapters marked "Deprecated" by Google AdMob / Ad Manager; publishers
+    directed to remove the AdColony SDK and adapter.
+  - AdColony-iOS-SDK GitHub repository archived (read-only).
+  contact: monetization@digitalturbine.com
+versioning:
+  ios_sdk_last: 4.9.0
+  android_sdk_last: 4.8.0
+status_page: null
+sla: null

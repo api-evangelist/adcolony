@@ -1,12 +1,31 @@
 aid: adcolony
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/adcolony.png
 name: AdColony
-description: AdColony is a company surfaced as a portfolio company of insight-partners and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: AdColony was a mobile advertising and app-monetization company known for its
+  high-definition video and interactive (Aurora HD) mobile ad SDKs and its Publisher and Advertiser
+  reporting APIs. AdColony was acquired by Digital Turbine in 2021; adcolony.com and its developer
+  support/docs hosts now 308-redirect to digitalturbine.com, so the historical reporting-API
+  and helpdesk documentation is no longer served. The first-party AdColony mobile ads SDKs
+  for iOS (CocoaPods) and Android (Maven Central) remain published, and the iOS SDK source
+  remains archived on GitHub.
 url: https://raw.githubusercontent.com/api-evangelist/adcolony/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - insight-partners
+x-parent: digital-turbine
+x-status: acquired
 x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
@@ -14,6 +33,12 @@ created: '2026-07-17'
 modified: '2026-07-17'
 tags:
 - Company
+- Advertising
+- Mobile Advertising
+- AdTech
+- SDK
+- Monetization
+- Mobile
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -22,4 +47,25 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: http://www.adcolony.com/
+  url: https://www.adcolony.com/
+- type: GitHubOrganization
+  url: https://github.com/AdColony
+- type: SourceCode
+  url: https://github.com/AdColony/AdColony-iOS-SDK
+- type: Packages
+  url: packages/adcolony-packages.yml
+- type: SDKs
+  url: packages/adcolony-packages.yml
+- type: Lifecycle
+  url: lifecycle/adcolony-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/adcolony-lifecycle.yml
+- type: WellKnown
+  url: well-known/adcolony-well-known.yml
+- type: DomainSecurity
+  url: security/adcolony-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
