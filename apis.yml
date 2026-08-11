@@ -46,6 +46,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Releases
+  url: https://github.com/AdColony/AdColony-iOS-SDK/releases
 - type: Website
   url: https://www.adcolony.com/
 - type: GitHubOrganization
