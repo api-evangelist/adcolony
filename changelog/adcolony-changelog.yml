@@ -1,0 +1,136 @@
+generated: '2026-08-12'
+method: searched
+source: >-
+  https://github.com/AdColony/AdColony-iOS-SDK/blob/master/CHANGELOG.md,
+  https://github.com/AdColony/AdColony-Android-SDK/blob/master/CHANGELOG.md
+notes: >-
+  AdColony never published a dated changelog for its HTTP Publisher Reporting API.
+  The only dated, provider-published change record that is still served is the
+  CHANGELOG.md in each mobile ads SDK repository on the AdColony GitHub
+  organization. Both are frozen: the last entry in each is 2022-06-07, the date
+  Digital Turbine completed the DT Exchange merge. The iOS repository is archived
+  (read-only) and its README carries a "Deprecated" banner. Recorded as the
+  provider's real change surface, in its terminal state.
+scheme: semver
+scheme_note: >-
+  MAJOR.MINOR.PATCH per SDK, tracked independently for iOS and Android; the two
+  platforms are deliberately NOT version-locked (iOS reached 4.9.0 while Android
+  stopped at 4.8.0).
+status: frozen
+changelogs:
+- api: AdColony iOS SDK
+  url: https://github.com/AdColony/AdColony-iOS-SDK/blob/master/CHANGELOG.md
+  releases_url: https://github.com/AdColony/AdColony-iOS-SDK/releases
+  current_version: 4.9.0
+  current_date: '2022-06-07'
+  archived: true
+- api: AdColony Android SDK
+  url: https://github.com/AdColony/AdColony-Android-SDK/blob/master/CHANGELOG.md
+  releases_url: https://github.com/AdColony/AdColony-Android-SDK/releases
+  current_version: 4.8.0
+  current_date: '2022-06-07'
+  archived: false
+  note: >-
+    Maven Central carries 4.8.1 and 4.8.2 (both 2026-08-07) with no matching
+    CHANGELOG entry, GitHub tag or release. See packages/adcolony-packages.yml
+    currency_note.
+entries:
+- version: 4.9.0
+  platform: ios
+  date: '2022-06-07'
+  breaking: false
+  additions:
+  - Added `adColonyAdViewDidShow:` API to the AdView delegate.
+  fixes:
+  - Fixed crash (SIGSEGV/fwrite).
+- version: 4.8.0
+  platform: android
+  date: '2022-06-07'
+  breaking: false
+  additions:
+  - Added banner onShow callback.
+  fixes:
+  - Fixed ConcurrentModificationException.
+- version: 4.7.1
+  platform: android
+  date: '2022-03-30'
+  breaking: false
+  additions:
+  - Google Designed For Families (DFF) compliance changes.
+  fixes:
+  - Fixed missing click callback in banner integrations.
+- version: 4.8.0
+  platform: ios
+  date: '2022-03-10'
+  breaking: true
+  breaking_note: >-
+    Configure interface changed; the previous configure interface was deprecated
+    in the same release.
+  additions:
+  - Allow banner ad request without a UIViewController at request time.
+  - Updated Open Measurement (OM) SDK to v1.3.30.
+  fixes:
+  - SDK no longer overwrites the host app audio session category.
+  - Fixed ad freeze caused by untimely audio-session configuration.
+- version: 4.7.0
+  platform: android
+  date: '2022-03-10'
+  breaking: true
+  breaking_note: Configure interface changed; the old one was deprecated.
+  additions:
+  - Updated Open Measurement (OM) SDK to v1.3.30.
+  fixes:
+  - Fixed NullPointerException on virtual method invocation.
+  - Fixed ClassNotFoundException for android.webkit.RenderProcessGoneDetail.
+- version: 4.6.5
+  platform: android
+  date: '2021-10-21'
+  breaking: false
+  additions:
+  - AD_ID permission support for Android 12.
+- version: 4.7.2
+  platform: ios
+  date: '2021-09-13'
+  breaking: false
+  additions:
+  - Additional SKOverlay controls for creatives.
+- version: 4.7.0
+  platform: ios
+  date: '2021-08-03'
+  breaking: true
+  breaking_note: >-
+    Removed the public block interface and the native ad view API — a removal of
+    published surface, not a deprecation.
+  additions:
+  - Mac M1 emulator support.
+  - Optimized data returned via collectSignals().
+- version: 4.6.1
+  platform: ios
+  date: '2021-04-21'
+  breaking: false
+  additions:
+  - SKAdNetwork view-through attribution support.
+  - Build requires Xcode 12.5.
+- version: 4.4.0
+  platform: ios
+  date: '2020-09-18'
+  breaking: false
+  additions:
+  - iOS 14 support.
+- version: 4.3.0
+  platform: ios
+  date: '2020-08-05'
+  breaking: false
+  additions:
+  - Support for SKAdNetwork attribution and the iOS 14 IDFA changes.
+- version: 4.2.0
+  platform: ios
+  date: '2020-07-07'
+  breaking: false
+  deprecations:
+  - >-
+    Deprecated the GDPR-specific methods on AdColonyAppOptions in favour of a
+    generic privacy-framework API covering other privacy laws.
+  additions:
+  - Support for Open Measurement (OM) SDK v1.3.4.
+  - Added `[AdColony collectSignals]` for advanced bidding mediation integrations.

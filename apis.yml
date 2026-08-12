@@ -30,7 +30,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-08-12'
 tags:
 - Company
 - Advertising
@@ -62,12 +62,50 @@ common:
   url: lifecycle/adcolony-lifecycle.yml
 - type: Deprecation
   url: lifecycle/adcolony-lifecycle.yml
-- type: WellKnown
-  url: well-known/adcolony-well-known.yml
 - type: DomainSecurity
   url: security/adcolony-domain-security.yml
+- type: ChangeLog
+  url: changelog/adcolony-changelog.yml
+- type: Webhooks
+  url: asyncapi/adcolony-v4vc-webhooks.yml
+- type: Conformance
+  url: conformance/adcolony-conformance.yml
+- type: Compliance
+  url: conformance/adcolony-conformance.yml
+- type: Conventions
+  url: conventions/adcolony-conventions.yml
+- type: Plans
+  url: plans/adcolony-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/adcolony-rate-limits.yml
+- type: LLMsTxt
+  url: llms/adcolony-llms.txt
+- type: Documentation
+  url: https://github.com/AdColony/AdColony-Android-SDK/wiki
+- type: GettingStarted
+  url: https://github.com/AdColony/AdColony-Android-SDK/wiki/Project-Setup
+- type: PrivacyPolicy
+  url: https://www.digitalturbine.com/legal/privacy-policy
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-12'
+  status: enriched
+  artifacts_added: 7
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+x-coverage:
+  state: none
+  reason: defunct
+  detail: >-
+    AdColony was absorbed into Digital Turbine's DT Exchange, so every path on
+    adcolony.com now 308-redirects to digitalturbine.com and the one HTTP API it
+    shipped — the Publisher Reporting API v2.3 — survives only as a PDF link on a
+    support host that no longer accepts connections.
+  evidence:
+  - url: https://www.adcolony.com/
+    status: 308
+  - url: https://support.adcolony.com/wp-content/uploads/2019/07/AdColony-Publisher-Reporting-API-v2.3_Nov222016.pdf
+    status: 0
+  - url: https://github.com/AdColony/AdColony-Android-SDK/wiki/Publisher-Reporting-API
+    status: 200
+  - url: https://adcolony-www-common.s3.amazonaws.com/Javadoc/4.8.0/index.html
+    status: 403
+  checked: '2026-08-12'

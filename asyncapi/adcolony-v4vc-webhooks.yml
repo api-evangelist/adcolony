@@ -1,0 +1,141 @@
+generated: '2026-08-12'
+method: searched
+source: >-
+  https://github.com/AdColony/AdColony-Android-SDK/wiki/Showing-Rewarded-Interstitial-Ads
+notes: >-
+  AdColony publishes no AsyncAPI document and no event-streaming surface. It does
+  publish one real, fully specified server-to-server callback: the V4VC
+  (Virtual Currency) server-side reward callback. AdColony calls a publisher-hosted
+  URL when a user completes a rewarded ad, so the publisher can credit virtual
+  currency from a trusted source rather than from the client. This artifact captures
+  that callback contract verbatim from the provider's own SDK wiki, which is the
+  only AdColony developer documentation still served (adcolony.com and
+  support.adcolony.com are gone — see x-coverage in apis.yml). No AsyncAPI is
+  fabricated for it.
+asyncapi_published: false
+asyncapi_reason: >-
+  Provider never published an AsyncAPI (or any event schema). The webhook is
+  documented in prose plus a PHP receiver sample; the transport is an HTTP GET with
+  query-string parameters, which predates the modern webhook conventions AsyncAPI
+  models.
+transport: http-get-query-string
+direction: provider-to-publisher
+delivery: at-least-once
+webhooks:
+- name: v4vc-reward-callback
+  title: V4VC server-side virtual currency reward callback
+  docs: >-
+    https://github.com/AdColony/AdColony-Android-SDK/wiki/Showing-Rewarded-Interstitial-Ads
+  trigger: >-
+    A user completes a rewarded ad in a zone configured for V4VC with client-side
+    virtual currency disabled in the AdColony control panel.
+  method: GET
+  endpoint_owner: publisher
+  endpoint_configuration: >-
+    The publisher enters the callback URL in the video zone configuration page of
+    the AdColony Control Panel.
+  endpoint_requirements:
+  - >-
+    The callback URL must not require any authentication to reach the publisher's
+    server (no login, no auth header). HTTPS is permitted and encouraged; what is
+    forbidden is an authentication challenge.
+  parameters:
+  - name: id
+    in: query
+    description: >-
+      AdColony transaction id. Unique per transaction and the key the publisher must
+      record to detect duplicates.
+    role: transaction-id
+  - name: uid
+    in: query
+    description: AdColony-internal device/user id.
+  - name: zone
+    in: query
+    description: AdColony zone id the reward was earned in.
+  - name: amount
+    in: query
+    description: Amount of virtual currency to credit.
+  - name: currency
+    in: query
+    description: Virtual currency type/name configured for the zone.
+  - name: verifier
+    in: query
+    description: >-
+      MD5 hash used to authenticate the callback. See security.hash_construction.
+    role: signature
+  - name: custom_id
+    in: query
+    required: false
+    description: >-
+      The publisher-supplied user id passed via AdColonyAppOptions. Only sent when
+      the publisher appends `&custom_id=[CUSTOM_ID]` to the zone's configured
+      callback URL; it is not appended automatically.
+  - name: open_udid
+    in: query
+    description: Legacy iOS device identifier. Always empty on Android.
+  - name: udid
+    in: query
+    description: Legacy iOS device identifier. Always empty on Android.
+  - name: odin1
+    in: query
+    description: Legacy iOS device identifier. Always empty on Android.
+  - name: mac_sha1
+    in: query
+    description: Legacy iOS device identifier. Always empty on Android.
+  security:
+    scheme: shared-secret-md5-hash
+    secret_source: >-
+      A per-account secret key issued by AdColony and shown in the AdColony control
+      panel. Never transmitted in the callback.
+    hash_construction: >-
+      md5(id + uid + amount + currency + SECRET_KEY + custom_id) — concatenated in
+      that order, with custom_id appended only when the publisher has configured it.
+      Compare the result against the `verifier` parameter and reject on mismatch.
+    weaknesses:
+    - >-
+      MD5 with a concatenated (unseparated) shared secret. Not an HMAC; no
+      per-message nonce beyond the transaction id and no timestamp, so the callback
+      carries no replay window of its own.
+    - >-
+      Parameters travel in the query string, so identifiers and amounts land in any
+      intermediary access log.
+  responses:
+  - body: vc_success
+    meaning: >-
+      Transaction finished. Return this when the callback was received and the user
+      was credited, AND when the transaction id is a duplicate that was already
+      rewarded.
+    terminal: true
+  - body: vc_decline
+    meaning: >-
+      Transaction finished, not rewarded. Return when the uid is not valid or the
+      hash check failed.
+    terminal: true
+  - body: vc_noreward
+    meaning: Equivalent to vc_decline. Transaction finished, not rewarded.
+    terminal: true
+  - body: anything else
+    meaning: >-
+      Treated as an error. AdColony will periodically retry the transaction against
+      the publisher's server.
+    terminal: false
+  idempotency:
+    model: receiver-side-dedupe
+    key: id
+    requirement: >-
+      "To prevent duplicate transactions, you must make a record of the id of every
+      transaction received, and check each incoming transaction id against that
+      record after verifying the parameters."
+    on_duplicate: Return vc_success without crediting the user again.
+    note: >-
+      Idempotency here is the PUBLISHER's obligation on an inbound callback, not a
+      guarantee AdColony offers to callers of an AdColony API. It is recorded as a
+      documented convention, not as consumer-facing idempotency support.
+  provider_rules:
+  - >-
+    The only acceptable reasons to not reward a transaction are an invalid uid, a
+    failed security check, or a duplicate transaction already rewarded.
+  - >-
+    Client-side virtual currency handling exists as a zone option but the provider
+    documents it as not advised, stating a secure client-side virtual currency
+    system is not achievable.

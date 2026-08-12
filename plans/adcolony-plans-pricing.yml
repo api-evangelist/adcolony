@@ -1,0 +1,26 @@
+generated: '2026-08-12'
+method: searched
+source: https://www.adcolony.com/pricing
+plan_count: 0
+plans: []
+note: >-
+  AdColony published no plans, tiers or list pricing, and cannot now. Its two
+  commercial motions were revenue-share monetization for publishers (payout terms
+  set per account in the AdColony Control Panel, never listed publicly) and
+  media-buying for advertisers (negotiated, sales-led). No self-serve pricing page
+  ever existed. Since the Digital Turbine acquisition completed the surface is gone
+  outright: every path under adcolony.com 308-redirects to the same path on
+  digitalturbine.com, and /pricing terminates in a 404 there. Recorded as an
+  honest zero, verified 2026-08-12.
+pricing_model: revenue-share-and-negotiated-media
+self_serve: false
+evidence:
+- url: https://www.adcolony.com/pricing
+  status: 308
+  note: Redirects to https://www.digitalturbine.com/pricing
+- url: https://www.digitalturbine.com/pricing
+  status: 404
+  note: Redirect target does not exist; the chain terminates in a 404.
+- url: https://www.adcolony.com/
+  status: 308
+  note: Site root redirects to https://www.digitalturbine.com/ — no AdColony site remains.

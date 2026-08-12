@@ -1,0 +1,38 @@
+generated: '2026-08-12'
+method: searched
+source: >-
+  https://github.com/AdColony/AdColony-Android-SDK/wiki,
+  https://github.com/AdColony/AdColony-iOS-SDK/wiki,
+  https://support.adcolony.com/wp-content/uploads/2019/07/AdColony-Publisher-Reporting-API-v2.3_Nov222016.pdf
+limit_count: 0
+rate_limits: []
+headers: []
+note: >-
+  No published rate limits. AdColony's still-served developer documentation — the two
+  SDK wikis on its GitHub organization — documents no quota, no throttle, no
+  429 handling and no RateLimit/X-RateLimit/Retry-After headers, because the SDK
+  surface is not a developer-callable HTTP API. The one HTTP API AdColony did ship,
+  the Publisher Reporting API v2.3, was documented only in a PDF hosted on
+  support.adcolony.com; that host no longer answers (TCP connection failure,
+  2026-08-12), so any limits it may have stated are unrecoverable and are NOT
+  guessed here. Recorded as an honest zero.
+retry_semantics:
+  scope: v4vc-reward-callback
+  direction: inbound
+  description: >-
+    The only published retry behaviour runs the other way: AdColony retries the V4VC
+    reward callback against the publisher's server periodically until the publisher
+    returns vc_success, vc_decline or vc_noreward. No backoff schedule, retry ceiling
+    or retry-after signal is specified.
+  cross_reference: asyncapi/adcolony-v4vc-webhooks.yml
+evidence:
+- url: https://support.adcolony.com/wp-content/uploads/2019/07/AdColony-Publisher-Reporting-API-v2.3_Nov222016.pdf
+  status: 0
+  note: >-
+    Connection failure — support.adcolony.com resolves (wpeproxy.com) but accepts no
+    HTTP or HTTPS connection. This is the only Publisher Reporting API reference
+    AdColony ever published, linked from its own SDK wiki, and it is a PDF.
+- url: https://github.com/AdColony/AdColony-Android-SDK/wiki/Publisher-Reporting-API
+  status: 200
+  note: >-
+    Live wiki page whose entire body is one sentence pointing at the dead PDF above.

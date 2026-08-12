@@ -1,24 +1,111 @@
-generated: '2026-07-17'
+generated: '2026-08-12'
 method: probed
-source: live HTTP probes of the AdColony website host
+source: >-
+  live HTTP probes of every AdColony host that still resolves
+  (www.adcolony.com, adcolony.com, clients.adcolony.com, adc3-launch.adcolony.com)
+result: none
 notes: >-
-  www.adcolony.com 308-redirects to digitalturbine.com (AdColony was acquired by
-  Digital Turbine). No /.well-known documents are served. Empty result recorded
-  for provenance.
-host: www.adcolony.com
-endpoints:
-- path: /.well-known/security.txt
-  status: 404
-  file: null
-- path: /.well-known/openid-configuration
-  status: 404
-  file: null
-- path: /.well-known/oauth-authorization-server
-  status: 404
-  file: null
-- path: /.well-known/api-catalog
-  status: 404
-  file: null
-- path: /.well-known/ai-plugin.json
-  status: 404
-  file: null
+  Nothing is served at any /.well-known path on any AdColony host. www.adcolony.com,
+  adcolony.com and clients.adcolony.com all answer with a blanket 308 redirect to the
+  same path on digitalturbine.com (AdColony was acquired by Digital Turbine and
+  merged into the DT Exchange); following the redirect yields a 404 for every
+  /.well-known path. api., docs., developers., help. and android.adcolony.com no
+  longer resolve at all. support.adcolony.com resolves to a WP Engine proxy but
+  accepts no connection. adc3-launch.adcolony.com is a live ad-serving edge
+  (server: Finch) that answers HTTP 404 with an empty JSON object for every path
+  including the site root — it serves no documents.
+  Empty result recorded for provenance. NO WellKnown or SecurityTxt pointer is wired
+  in apis.yml, because a 404 on every path is an absence, not a surface. A previously
+  wired WellKnown pointer was REMOVED on 2026-08-12 for exactly that reason.
+hosts:
+- host: www.adcolony.com
+  reachable: true
+  behavior: 308 blanket redirect to https://www.digitalturbine.com/<same-path>
+  endpoints:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /security.txt
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+- host: clients.adcolony.com
+  reachable: true
+  behavior: >-
+    308 blanket redirect to https://www.digitalturbine.com/<same-path>. This was the
+    AdColony Control Panel / publisher client host.
+  endpoints:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+- host: adc3-launch.adcolony.com
+  reachable: true
+  behavior: >-
+    Live ad-serving edge (server: Finch, via Google). Answers HTTP 404 with body {}
+    for the site root and every probed path. No documents served.
+  endpoints:
+  - path: /
+    status: 404
+    file: null
+unreachable_hosts:
+- host: api.adcolony.com
+  reason: NXDOMAIN — does not resolve.
+- host: docs.adcolony.com
+  reason: NXDOMAIN — does not resolve.
+- host: developers.adcolony.com
+  reason: NXDOMAIN — does not resolve.
+- host: help.adcolony.com
+  reason: NXDOMAIN — does not resolve.
+- host: android.adcolony.com
+  reason: NXDOMAIN — does not resolve.
+- host: support.adcolony.com
+  reason: >-
+    Resolves to 4b9nsx2qa03r.wpeproxy.com but accepts no HTTP or HTTPS connection.
+    This host carried the Publisher Reporting API PDF and the AdColony helpdesk.

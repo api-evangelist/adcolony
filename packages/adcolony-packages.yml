@@ -1,30 +1,70 @@
-generated: '2026-07-17'
+generated: '2026-08-12'
 method: searched
-source: Maven Central (search.maven.org), CocoaPods trunk API, github.com/AdColony
+source: >-
+  https://repo1.maven.org/maven2/com/adcolony/sdk/maven-metadata.xml,
+  https://repo1.maven.org/maven2/com/adcolony/sdk/,
+  https://trunk.cocoapods.org/api/v1/pods/AdColony,
+  https://github.com/AdColony
 notes: >-
-  AdColony was acquired by Digital Turbine; adcolony.com and the developer
-  support/docs hosts now redirect to digitalturbine.com. The first-party mobile
-  ads SDKs remain published on Maven Central and CocoaPods, and the iOS SDK
-  source remains on GitHub (archived). No npm, PyPI, NuGet, RubyGems, Packagist,
-  or crates.io first-party packages were found.
+  AdColony was acquired by Digital Turbine (2021) and merged into the DT Exchange;
+  adcolony.com and every developer/docs subdomain are gone (see x-coverage in
+  apis.yml). The first-party mobile ads SDKs remain published on Maven Central and
+  CocoaPods. No npm, PyPI, NuGet, RubyGems, Packagist, crates.io or pkg.go.dev
+  first-party packages were found for this provider.
+currency_note: >-
+  Registry/source divergence recorded 2026-08-12. Maven Central now carries
+  com.adcolony:sdk 4.8.1 (2026-08-07) and 4.8.2 (2026-08-07), published four years
+  after the previous release 4.8.0 (2022-06-07). The AdColony/AdColony-Android-SDK
+  GitHub repository has not been pushed since 2022-06-07 and publishes no release or
+  tag for 4.8.1 or 4.8.2, and the 4.8.2 POM is byte-for-byte equivalent in metadata
+  to the 4.8.0 POM. Recorded as an observed fact; API Evangelist makes no claim about
+  who published those two artifacts or why.
 packages:
 - name: com.adcolony:sdk
   registry: maven
   official: true
   language: java
   platform: android
-  latest_version: 4.8.0
-  version_count: 11
+  version: 4.8.2
+  published: '2026-08-07'
+  previous_version: 4.8.0
+  previous_published: '2022-06-07'
+  version_count: 13
   packaging: aar
   url: https://central.sonatype.com/artifact/com.adcolony/sdk
   registry_url: https://repo1.maven.org/maven2/com/adcolony/sdk/
+  install: implementation 'com.adcolony:sdk:4.8.2'
+  source_code: https://github.com/AdColony/AdColony-Android-SDK
   description: AdColony Mobile Ads SDK for Android (mobile advertising / monetization).
+  note: >-
+    Latest and previous versions read from the Maven Central directory listing and
+    maven-metadata.xml on 2026-08-12. See currency_note — 4.8.1/4.8.2 have no
+    corresponding GitHub tag or release.
 - name: AdColony
   registry: cocoapods
   official: true
   language: objective-c
   platform: ios
-  latest_version: 4.9.0
+  version: 4.9.0
+  published: '2022-06-07'
   url: https://cocoapods.org/pods/AdColony
+  registry_url: https://trunk.cocoapods.org/api/v1/pods/AdColony
+  install: pod 'AdColony'
   source_code: https://github.com/AdColony/AdColony-iOS-SDK
-  description: AdColony Mobile Ads SDK for iOS (mobile advertising / monetization). Source repo archived on GitHub.
+  description: >-
+    AdColony Mobile Ads SDK for iOS (mobile advertising / monetization). Source repo
+    archived (read-only) on GitHub; last GitHub release v4.9.0 on 2022-06-07, which
+    matches the CocoaPods trunk date.
+  note: >-
+    Version and publish date read from the CocoaPods trunk API on 2026-08-12. Four
+    years stale; no release since the Digital Turbine merge completed.
+registries_checked:
+- {registry: maven, result: hit}
+- {registry: cocoapods, result: hit}
+- {registry: npm, result: none}
+- {registry: pypi, result: none}
+- {registry: nuget, result: none}
+- {registry: rubygems, result: none}
+- {registry: packagist, result: none}
+- {registry: crates.io, result: none}
+- {registry: pkg.go.dev, result: none}

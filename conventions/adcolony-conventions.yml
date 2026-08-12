@@ -1,0 +1,100 @@
+generated: '2026-08-12'
+method: searched
+source: >-
+  https://github.com/AdColony/AdColony-Android-SDK/wiki/Showing-Rewarded-Interstitial-Ads,
+  https://github.com/AdColony/AdColony-Android-SDK/wiki/Project-Setup,
+  https://github.com/AdColony/AdColony-Android-SDK/wiki/Privacy-Laws
+notes: >-
+  AdColony ships no HTTP API a developer calls; its integration surface is a mobile
+  SDK plus one inbound server-to-server callback. This artifact records the
+  cross-cutting semantics that ARE documented, and records honestly which of the
+  usual conventions do not exist rather than inventing them. Documentation source is
+  the AdColony GitHub SDK wikis, the only AdColony developer surface still served —
+  adcolony.com and support.adcolony.com are gone.
+surface: sdk-plus-inbound-callback
+authentication:
+  style: sdk-app-credentials
+  description: >-
+    Integration is authenticated by an AdColony App ID and one or more Zone IDs
+    issued in the AdColony Control Panel and passed to AdColony.configure(). There
+    is no API key, bearer token, OAuth flow or signed request for a developer-callable
+    HTTP API, because no such API is published.
+  callback_authentication:
+    scheme: shared-secret-md5-hash
+    detail: >-
+      The inbound V4VC reward callback carries a `verifier` query parameter equal to
+      md5(id + uid + amount + currency + SECRET_KEY + custom_id). The publisher
+      validates it against its own copy of the AdColony-issued secret.
+    cross_reference: asyncapi/adcolony-v4vc-webhooks.yml
+idempotency:
+  supported: false
+  direction: inbound-only
+  description: >-
+    AdColony publishes NO idempotency guarantee for a caller — there is no
+    Idempotency-Key header, no request-replay window, and no API to send one to.
+    What it does publish is the inverse: an obligation on the publisher receiving the
+    V4VC callback to deduplicate on the provider-supplied transaction `id`, because
+    AdColony retries any transaction that does not terminate with vc_success /
+    vc_decline / vc_noreward.
+  key: id
+  retention: unspecified
+  scope: v4vc-reward-callback
+  pointer_note: >-
+    Deliberately NOT wired as type Idempotency in apis.yml. That pointer asserts the
+    provider offers safe-retry semantics to an API consumer; AdColony asserts the
+    opposite direction. Emitting it would be false credit.
+pagination:
+  supported: unknown
+  description: >-
+    The AdColony Publisher Reporting API (v2.3, Nov 2016) documented paging behaviour
+    in a PDF served from support.adcolony.com. That host no longer answers
+    (connection failure, 2026-08-12), so no paging convention can be recorded
+    without fabricating it.
+field_expansion:
+  supported: false
+metadata:
+  supported: true
+  description: >-
+    A publisher-defined user identifier can be attached to a session via
+    AdColonyAppOptions setUserID and is echoed back on the V4VC callback as
+    `custom_id`, but ONLY if the publisher appends `&custom_id=[CUSTOM_ID]` to the
+    zone's configured callback URL. It is not appended automatically — a documented
+    footgun.
+request_id_tracing:
+  supported: true
+  field: id
+  description: >-
+    The V4VC callback's `id` is the transaction correlation identifier the publisher
+    stores and reconciles against. There is no request-id header convention because
+    there is no request/response API.
+versioning:
+  style: semver-per-sdk
+  description: >-
+    Independent MAJOR.MINOR.PATCH per platform SDK, distributed through Maven Central
+    (Android) and CocoaPods (iOS). The platforms are not version-locked. No API
+    version path segment, no version header, no dated version pinning.
+  cross_reference: changelog/adcolony-changelog.yml
+  distribution_note: >-
+    Android distribution moved from Bintray/JCenter to Maven Central at 4.4.1; only
+    4.4.1 and above exist on Maven Central.
+error_envelope:
+  style: bare-token-string
+  description: >-
+    The one documented wire contract is the publisher's RESPONSE to the V4VC
+    callback, and it is an unstructured bare token in the body — `vc_success`,
+    `vc_decline`, `vc_noreward`, or anything else meaning "retry me". No JSON
+    envelope, no problem+json, no error codes, no HTTP status semantics.
+  cross_reference: asyncapi/adcolony-v4vc-webhooks.yml
+rate_limit_signaling:
+  supported: false
+  description: >-
+    No rate-limit headers, quota model or 429 semantics are published on any
+    AdColony surface.
+  cross_reference: rate-limits/adcolony-rate-limits.yml
+privacy_conventions:
+  description: >-
+    Consent and opt-out are passed as cross-cutting AppOptions rather than per-call:
+    setPrivacyFrameworkRequired(<framework>, bool) declares whether a regime applies,
+    setPrivacyConsentString(<framework>, value) carries the IAB string or a "1"/"0"
+    fallback. Applies to GDPR and CCPA and is propagated to downstream demand.
+  cross_reference: conformance/adcolony-conformance.yml

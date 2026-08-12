@@ -1,28 +1,73 @@
-generated: '2026-07-17'
+generated: '2026-08-12'
 method: searched
 source: >-
   https://www.digitalturbine.com/blog/dt-exchange-x-adcolony-merge-is-now-complete,
-  https://developers.google.com/admob/android/mediation/adcolony
+  https://developers.google.com/admob/android/mediation/adcolony,
+  https://github.com/AdColony/AdColony-iOS-SDK,
+  https://github.com/AdColony/AdColony-Android-SDK
 status: deprecated
 summary: >-
   AdColony was a mobile advertising and monetization platform acquired by Digital
   Turbine (2021) and subsequently merged into the DT Exchange. The AdColony brand,
   developer portal, and monetization SDKs have been deprecated. www.adcolony.com
-  now redirects to digitalturbine.com; developers are directed to Digital Turbine's
-  DT FairBid / DT Exchange products.
+  now 308-redirects to digitalturbine.com; developers are directed to Digital
+  Turbine's DT FairBid / DT Exchange products.
 deprecation:
   deprecated: true
   reason: acquired-and-merged
   successor: Digital Turbine (DT Exchange / DT FairBid)
-  successor_url: https://www.digitalturbine.com/
+  successor_url: https://www.digitalturbine.com/app-developers/#monetizationsolutions
+  announcement: >-
+    The AdColony-iOS-SDK README carries a first-party deprecation banner —
+    "Deprecated. This library has been depracated, please visit
+    digitalturbine.com/app-developers/#monetizationsolutions website for alternative
+    options." — which is the provider's own end-of-life notice.
   sunset_notes:
   - AdColony publisher account access retained for accounting purposes only until 2024-03-31.
   - AdColony mediation adapters marked "Deprecated" by Google AdMob / Ad Manager; publishers
     directed to remove the AdColony SDK and adapter.
   - AdColony-iOS-SDK GitHub repository archived (read-only).
+  - >-
+    Every AdColony developer host is gone. api./docs./developers./help./android.adcolony.com
+    no longer resolve; support.adcolony.com resolves but accepts no connection, taking the
+    Publisher Reporting API v2.3 PDF with it.
+  - >-
+    The hosted API class references are dead: the Appledoc (iOS 4.9.0) and Javadoc
+    (Android 4.8.0) bundles linked from the SDK wikis both return HTTP 403 from
+    adcolony-www-common.s3.amazonaws.com.
+  standards_compliance: none
+  standards_note: >-
+    No RFC 8594 Sunset header, no Deprecation header, and no dated machine-readable
+    deprecation signal was ever published. The end-of-life is communicated only in
+    README prose and a site-wide redirect.
   contact: monetization@digitalturbine.com
 versioning:
   ios_sdk_last: 4.9.0
+  ios_sdk_last_date: '2022-06-07'
   android_sdk_last: 4.8.0
-status_page: null
+  android_sdk_last_date: '2022-06-07'
+  android_registry_latest: 4.8.2
+  android_registry_latest_date: '2026-08-07'
+  android_registry_note: >-
+    Maven Central carries com.adcolony:sdk 4.8.1 and 4.8.2 (both 2026-08-07) that have
+    no corresponding GitHub tag, release or CHANGELOG entry. Recorded as an observed
+    registry/source divergence, not as a resumption of the product. See
+    packages/adcolony-packages.yml currency_note.
+  cross_reference: changelog/adcolony-changelog.yml
+status_page:
+  published: false
+  note: >-
+    No status page. status.adcolony.com does not resolve. adcolony.statuspage.io
+    returns HTTP 200 but the body is Atlassian's own Statuspage marketing page
+    (canonical https://www.atlassian.com/software/statuspage) — a soft-200, not an
+    AdColony status page, and deliberately not credited as one. No StatusPage pointer
+    is wired in apis.yml.
+  evidence:
+  - url: https://status.adcolony.com/
+    status: 0
+    note: Does not resolve.
+  - url: https://adcolony.statuspage.io/
+    status: 200
+    note: Atlassian Statuspage marketing page. Soft-200, no AdColony tenant.
 sla: null
+sla_note: No SLA was ever published on an AdColony-controlled surface.
