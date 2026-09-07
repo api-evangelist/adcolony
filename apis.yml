@@ -38,7 +38,6 @@ x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - insight-partners
-x-parent: digital-turbine
 x-status: acquired
 x-tier: stub
 x-tier-reason: portfolio-lead
@@ -123,3 +122,5 @@ x-coverage:
   - url: https://adcolony-www-common.s3.amazonaws.com/Javadoc/4.8.0/index.html
     status: 403
   checked: '2026-08-12'
+x-parent: digital-turbine
+x-relationship: acquisition
