@@ -64,6 +64,66 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-AdColony is a company surfaced as a portfolio company of insight-partners and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+> **Acquired or rebranded.** This company was acquired, merged or renamed. Its API, if it still exists, is offered under another name. This profile is kept as a historical record and is not maintained or rated.
 
-Backed by: insight-partners — http://www.adcolony.com/
+AdColony was a mobile advertising and app-monetization company known for its high-definition video and interactive (Aurora HD) mobile ad SDKs and its Publisher and Advertiser reporting APIs. AdColony was acquired by Digital Turbine in 2021; adcolony.com and its developer support/docs hosts now 308-redirect to digitalturbine.com, so the historical reporting-API and helpdesk documentation is no longer served. The first-party AdColony mobile ads SDKs for iOS (CocoaPods) and Android (Maven Central) remain published, and the iOS SDK source remains archived on GitHub.
+
+**Areas:** Company · Advertising · Mobile Advertising · AdTech · SDK · Monetization · Mobile
+
+## AdColony on APIs.io (historical record)
+
+Everything profiled for AdColony is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/adcolony/](https://apis.io/providers/adcolony/)** — or go straight to one of the APIs or properties below.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Adcolony V4Vc Webhooks](https://apis.io/asyncapis/adcolony/adcolony-v4vc-webhooks/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Adcolony Domain Security](https://apis.io/security/adcolony/adcolony-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Adcolony Plans Pricing](https://apis.io/plans/adcolony/adcolony-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Adcolony Rate Limits](https://apis.io/rate-limits/adcolony/adcolony-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.adcolony.com/)
+- [Documentation](https://github.com/AdColony/AdColony-Android-SDK/wiki)
+- [Getting started](https://github.com/AdColony/AdColony-Android-SDK/wiki/Project-Setup)
+- [Privacy policy](https://www.digitalturbine.com/legal/privacy-policy)
+- [GitHub](https://github.com/AdColony)
+
+## API Evangelist rating
+
+**Not rated** — this company is recorded as acquired or rebranded, so no score is published. If it is in fact operating, say so on this repository and it will be re-profiled.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for AdColony: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/adcolony/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
