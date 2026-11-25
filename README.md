@@ -88,19 +88,19 @@ Event-driven and webhook contracts.
 
 Authentication, trust centre, and vulnerability disclosure.
 
-- [Adcolony Domain Security](https://apis.io/security/adcolony/adcolony-domain-security/)
+- [AdColony Domain Security](https://apis.io/security/adcolony/adcolony-domain-security/)
 
 #### Plans and pricing (1)
 
 Published plans, tiers and prices.
 
-- [Adcolony Plans Pricing](https://apis.io/plans/adcolony/adcolony-plans-pricing/)
+- [AdColony Plans Pricing](https://apis.io/plans/adcolony/adcolony-plans-pricing/)
 
 #### Rate limits (1)
 
 Published request limits.
 
-- [Adcolony Rate Limits](https://apis.io/rate-limits/adcolony/adcolony-rate-limits/)
+- [AdColony Rate Limits](https://apis.io/rate-limits/adcolony/adcolony-rate-limits/)
 
 ## Where to find this API
 
